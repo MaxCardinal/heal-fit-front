@@ -1,32 +1,31 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+  <div class="container-fluid" id="app">
+        <div class="row">
+            <Sidebar></Sidebar>
+
+            <main class="main-content col-lg-10 col-md-9 col-sm-12 p-0 offset-lg-2 offset-md-3">
+                <NavBar></NavBar>
+                <div class="main-content-container container-fluid px-4 mt-4">
+                    <transition name="slide-fade" mode="out-in">
+                        <router-view></router-view>
+                    </transition>
+                </div>
+
+                <site-footer></site-footer>
+            </main>
+        </div>
     </div>
-    <router-view/>
-  </div>
 </template>
 
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
 
-#nav {
-  padding: 30px;
-}
+<script>
+  import NavBar from '@/components/layouts/Navbar.vue'
+  import Sidebar from '@/components/layouts/Sidebar.vue'
 
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
-</style>
+  export default {
+    components: {
+      NavBar,
+      Sidebar
+    }
+  }
+</script>
