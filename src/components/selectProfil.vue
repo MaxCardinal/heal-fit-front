@@ -56,7 +56,7 @@ export default {
     methods: {
         
         GetProfiles(){
-            let idAccount = 1
+            let idAccount =  this.$route.params.id
 
             axios.get('accounts/'+ idAccount +'/Profiles')
             .then(response => {

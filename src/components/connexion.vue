@@ -49,9 +49,8 @@ export default {
         connection() {
             axios.get('Auth?login=' + this.user.login + "&password=" + this.user.password)
             .then(response => {
-                console.log(response.data)
                 if (response.data) {
-                    this.$router.push({name: 'select'})            
+                    this.$router.push({name: 'select', params: {id:response.data.id}})            
                 }
             })
         },

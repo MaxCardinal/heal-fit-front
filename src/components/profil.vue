@@ -83,7 +83,7 @@
     methods:{
       
       GetProfil(){
-        let id = 1//this.$route.params.id
+        let id = this.$route.params.id
 
         axios.get('/profiles/' + id)
         .then(response => {
