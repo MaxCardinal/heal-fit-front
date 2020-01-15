@@ -37,16 +37,30 @@ export default {
         return {
             navs: [
                 { name: 'profil', title: '', icon: 'fas fa-home'},
-            ]
+            ],
+
+            profil:{
+                id:'',
+                firstName:'',
+                lastName:'',
+                age:'',
+                imageUrl:'',
+                accountID:'',
+                plans:''
+            },
+
         }
     },
 
     methods: {
         
         GetProfils(){
-            let idAccouts = 0
+            let idAccouts = 1
 
-            
+            axios.Get('accounts/'+ idAccouts +'/Profiles')
+            .then(response => {
+                this.profil = response.data
+            })
         }
 
     }
