@@ -54,6 +54,19 @@ export default {
                     this.$router.push({name: 'select'})            
                 }
             })
+        },
+
+        connection() {
+            if (this.user.email != '' && this.user.password != '') {
+                this.accounts.forEach(account => {
+                    if (account.email == this.user.email && account.password == this.user.password) {
+                        this.$router.push({name: 'select'})
+                    }
+                    else {
+                        console.log('nope')
+                    }
+                })
+            }
         }
     },
 
