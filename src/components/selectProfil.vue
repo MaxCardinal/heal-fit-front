@@ -2,7 +2,7 @@
     <div class="text-center">
         <div class="row">
             <div class="col" v-for="(profil, key) in profiles" :key="key">
-                <router-link :to="{name: navs[0].name}" class="nav-link selectProfils">
+                <router-link :to="{name: navs[0].name,  params: {id: profil.id}}" class="nav-link selectProfils">
                     <img class="rounded-circle w-25 m-3 img-profil" src="./../assets/Profil.png">
                     <h1 class="m-3 text-white"> {{ profil.firstName }} {{ profil.lastName }} </h1>
                 </router-link>
@@ -48,24 +48,30 @@ export default {
                 accountID:'',
                 plans:''
             },
+            profiles: [],
 
         }
     },
 
     methods: {
         
-        GetProfils(){
-            let idAccouts = 1
+        GetProfiles(){
+            let idAccount = 1
 
-            axios.Get('accounts/'+ idAccouts +'/Profiles')
+            axios.get('accounts/'+ idAccount +'/Profiles')
             .then(response => {
-                this.profil = response.data
+                console.log(response.data.profiles)
+                this.profiles = response.data.profiles
             })
+        },
+
+        selectProfil(id) {
+            console.log(id)
         }
     },
 
     mounted() {
-        this.getProfils()
+        this.GetProfiles()
     }
 
 }

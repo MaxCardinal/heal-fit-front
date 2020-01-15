@@ -10,7 +10,7 @@
                         <div class="col align-self-center form-group">
                             <div class="row">
                                 <div class="col-sm-6">
-                                    <input type="text" id="login" class="form-control" name="login" placeholder="Email" v-model="user.email">
+                                    <input type="text" id="login" class="form-control" name="login" placeholder="Email" v-model="user.login">
                                 </div>
                                 <div class="col-sm-6">
                                     <input type="password" id="password" class="form-control" name="password" placeholder="Password" v-model="user.password">
@@ -39,36 +39,26 @@ export default {
             ],
             accounts: [],
             user: {
-                email: '',
+                login: '',
                 password: '',
             }
         }
     },
     
     methods: {
-        getAccounts() {
-            axios.get('/accounts')
-            .then(response => {
-                this.accounts = response.data
-            })
-        },
-
         connection() {
-            if (this.user.email != '' && this.user.password != '') {
-                this.accounts.forEach(account => {
-                    if (account.email == this.user.email && account.password == this.user.password) {
-                        this.$router.push({name: 'profil'})
-                    }
-                    else {
-                        console.log('nope')
-                    }
-                })
-            }
+            axios.get('Auth?login=' + this.user.login + "&password=" + this.user.password)
+            .then(response => {
+                console.log(response.data)
+                if (response.data) {
+                    this.$router.push({name: 'select'})            
+                }
+            })
         }
     },
 
     mounted() {
-        this.getAccounts()
+        // this.getAccounts()
     }
     
 }

@@ -21,7 +21,7 @@ const routes = [
     component: Stat,
   },
   {
-    path: '/profil',
+    path: '/profil/:id',
     name: 'profil',
     component: Profil,
   },
