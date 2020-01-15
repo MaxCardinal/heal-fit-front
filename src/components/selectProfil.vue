@@ -40,6 +40,17 @@ export default {
             ]
         }
     },
+
+    methods: {
+        
+        GetProfils(){
+            let idAccouts = 0
+
+            
+        }
+
+    }
+
 }
 </script>
 

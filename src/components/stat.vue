@@ -41,7 +41,7 @@
                         </div>
                         <div class="col p-0">
                             <trend
-                                :data="dataImc"
+                                :data="dataPoids"
                                 :gradient="['#FF0000', '#00FF0C']"
                                 height=100
                                 stroke-width="2"
@@ -92,7 +92,7 @@
     export default {
         data () {
         return {
-            dataImc: [85, 84.14, 83, 83.65, 82.19, 81.98, 82.16, 80.16, 84.14, 85],
+            dataImc: [28, 27, 27, 26, 26, 25, 25, 25, 26, 29],
             dataPoids: [85, 84.14, 83, 83.65, 82.19, 81.98, 82.16, 80.16, 84.14, 85]
         }
         }

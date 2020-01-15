@@ -4,8 +4,8 @@
 
       <div class="text-center">
         <img class="rounded-circle m-3 img-profil" src="./../assets/Profil.png">
-        <h1 class="m-3 text-white">Jeff Bezos</h1>
-        <h2 class="m-3 text-white">28 ans</h2>
+        <h1 class="m-3 text-white">{{profil.firstName}} {{profil.lastName}}</h1>
+        <h2 class="m-3 text-white">{{profil.age}}</h2>
       </div>
 
       <div class="row text-center text-black">
@@ -64,9 +64,41 @@
   export default {
     data () {
       return {
+
+        profil:{
+          id:'',
+          firstName:'',
+          lastName:'',
+          age:'',
+          imageUrl:'',
+          accountID:'',
+          plans:''
+        },
+
         data: [85, 84.14, 83, 83.65, 82.19, 81.98, 82.16, 80.16, 84.14, 85]
+
       }
+    },
+
+    methods:{
+      
+      GetProfil(){
+        let id = 1//this.$route.params.id
+
+        axios.get('/profiles/' + id)
+        .then(response => {
+          this.profil = response.data
+        })
+
+      }
+
+    },
+
+    mounted() {
+      
+        this.GetProfil()
     }
+
   }
 </script>
 

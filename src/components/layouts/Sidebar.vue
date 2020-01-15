@@ -32,6 +32,7 @@ export default {
             navs: [
                 {name: 'profil', title: 'Profil', icon: 'fas fa-user', },
                 {name: 'stat', title: 'Mes statistiques', icon: 'fas fa-list-ul'},
+                {name: 'calendar', title: 'Calendrier', icon: 'fas fa-calendar'},
             ]
         }
     },

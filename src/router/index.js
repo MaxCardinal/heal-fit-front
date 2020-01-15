@@ -5,6 +5,7 @@ import Stat from '../components/stat.vue'
 import Profil from '../components/profil.vue'
 import Select from '../components/selectProfil.vue'
 import Login from '../components/connexion.vue'
+import Calendar from '../components/calendar.vue'
 
 Vue.use(VueRouter)
 
@@ -33,8 +34,12 @@ const routes = [
     path: '/login',
     name: 'login',
     component: Login,
+  },
+  {
+    path: '/calendar',
+    name: 'calendar',
+    component: Calendar,
   }
-
 ] 
 
 const router = new VueRouter({
