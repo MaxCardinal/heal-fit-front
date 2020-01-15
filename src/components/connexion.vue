@@ -6,19 +6,19 @@
             <div id="container-login" class="row">
                 <div id="bloc-left" class="col-sm-3"></div>
                 <div id="form" class="card  bg-grey box-shadow-spe text-center col-sm-6 p-4">
-                    <form>
+                    <form @submit.prevent="connection()">
                         <div class="col align-self-center form-group">
                             <div class="row">
                                 <div class="col-sm-6">
-                                    <input type="text" id="login" class="form-control" name="login" placeholder="Email" >
+                                    <input type="text" id="login" class="form-control" name="login" placeholder="Email" v-model="user.email">
                                 </div>
                                 <div class="col-sm-6">
-                                    <input type="password" id="password" class="form-control" name="password" placeholder="Password" >
+                                    <input type="password" id="password" class="form-control" name="password" placeholder="Password" v-model="user.password">
                                 </div>
                             </div>
-                            <router-link :to="{name: navs[0].name}" class="nav-link">
-                                <input type="submit" class="form-control mt-3 btn-success" value="Log In">
-                            </router-link>
+                            <input type="submit" class="form-control mt-3 btn-success" value="Log In">
+                            <!-- <router-link :to="{name: navs[0].name}" class="nav-link"> -->
+                            <!-- </router-link> -->
                         </div>
                     </form>
                 </div>
@@ -36,11 +36,40 @@ export default {
         return {
             navs: [
                 { name: 'select', title: '', icon: 'fas fa-home'},
-            ]
+            ],
+            accounts: [],
+            user: {
+                email: '',
+                password: '',
+            }
         }
     },
     
+    methods: {
+        getAccounts() {
+            axios.get('/accounts')
+            .then(response => {
+                this.accounts = response.data
+            })
+        },
 
+        connection() {
+            if (this.user.email != '' && this.user.password != '') {
+                this.accounts.forEach(account => {
+                    if (account.email == this.user.email && account.password == this.user.password) {
+                        this.$router.push({name: 'profil'})
+                    }
+                    else {
+                        console.log('nope')
+                    }
+                })
+            }
+        }
+    },
+
+    mounted() {
+        this.getAccounts()
+    }
     
 }
 </script>
