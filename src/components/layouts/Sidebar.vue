@@ -15,7 +15,7 @@
           <div class="nav-wrapper">
             <ul class="nav flex-column bg-dark">
                 <li class="nav-item bg-dark text-white" v-for="(nav, key) in navs" :key="key" :class=" { 'active' : nav.name.includes($route.name.split('.')[0]) }">
-                    <router-link :to="{name: nav.name, params:{id: profil.id}}" class=" text-white nav-link bg-dark">
+                    <router-link :to="{name: nav.name}" class=" text-white nav-link bg-dark">
                         <i :class="nav.icon"></i>
                         <b>{{ nav.title }}</b>
                     </router-link>
