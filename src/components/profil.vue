@@ -17,7 +17,7 @@
                 <i class="fas fa-ruler-vertical fa-4x"></i>
               </div>
               <div class="col">
-                <h1 class="m-4 text-black">185 cm</h1>
+                <h1 class="m-4 text-black">{{ taille }} cm</h1>
               </div>
           </div>
         </div>
@@ -29,7 +29,7 @@
                 <i class="fas fa-weight fa-4x"></i>
               </div>
               <div class="col">
-                <h1 class="m-4 text-black">{{ profileTrait.value }} kg</h1>
+                <h1 class="m-4 text-black">{{ poids }} kg</h1>
               </div>
           </div>
         </div>
@@ -42,7 +42,7 @@
                 <i class="fas fa-weight fa-4x"></i>
               </div>
               <div class="col">
-                <h1 class="m-4 text-black">75 kg</h1>
+                <h1 class="m-4 text-black">{{ objectif }} kg</h1>
               </div>
           </div>
         </div>
@@ -71,6 +71,9 @@
         },
         traits: [],
         profileTrait: {},
+        poids: '',
+        taille: '',
+        objectif: '',
 
         // [85, 84.14, 83, 83.65, 86, 81.98, 82.16, 80.16, 84.14, 85]
         data: []
@@ -102,7 +105,22 @@
             }
           })
 
-          this.profileTrait = response.data.traits[response.data.traits.length - 1]
+          // this.profileTrait = response.data.traits[response.data.traits.length - 1]
+          // console.log(response.data.traits)
+
+          response.data.traits.forEach(trait => {
+            if (trait.type == 0) {
+              this.poids = trait.value
+            }
+
+            if (trait.type == 1) {
+              this.taille = trait.value
+            }
+
+            if (trait.type == 2) {
+              this.objectif = trait.value
+            }
+          })
         })
       }
 
