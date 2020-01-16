@@ -25,7 +25,7 @@
                             <trend
                                 :data="dataImc"
                                 :gradient="['#FF0000', '#00FF0C']"
-                        
+                                height=100
                                 stroke-width="2"
                                 auto-draw
                                 smooth>
@@ -43,7 +43,7 @@
                             <trend
                                 :data="dataPoids"
                                 :gradient="['#FF0000', '#00FF0C']"
-                                
+                                height=100
                                 stroke-width="2"
                                 auto-draw
                                 smooth>
@@ -64,7 +64,7 @@
                             </button>
                         </div>
                         <div class="modal-body bg-grey">  
-                            <form>
+                            <form @submit.prevent="addTrait()">
                                 <div class='row text-black'>
                                     <div class="col  form-group">
                                         <label for="Date">Date:</label>
@@ -80,7 +80,7 @@
                                     </div>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="submit" class="btn btn-primary" @click="addTrait()">Valider</button>
+                                    <button type="submit" class="btn btn-primary">Valider</button>
                                 </div>
                             </form>
                         </div>
@@ -110,12 +110,6 @@
         },
 
         methods:{
-
-            getDateToday(){
-                var ladate = new Date();
-                this.Trait.date = ladate.getDate()+"/"+(ladate.getMonth() + 1)+"/"+ladate.getFullYear()
-            },
-
             getPoid(){
                 axios.get('')
                 .then(response => {
@@ -148,6 +142,8 @@
                     //IMC
                     this.Trait.ProfileID = 1
                     this.Trait.Value = parseFloat(this.poids / ((this.taille/100)^2))
+                    console.log("Poids : " + this.poids)
+                    console.log("Taille : " + this.taille)
                     console.log(this.Trait.Value)
                     this.Trait.Type = 2 
                     axios.post('/Traits', this.Trait)
@@ -156,10 +152,6 @@
                     })
                 })
             }
-        },
-
-        mounted() {
-            this.getDateToday()
         }
     }
 </script>
