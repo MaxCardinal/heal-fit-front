@@ -25,7 +25,7 @@
                             <trend
                                 :data="dataImc"
                                 :gradient="['#FF0000', '#00FF0C']"
-                                height=100
+                        
                                 stroke-width="2"
                                 auto-draw
                                 smooth>
@@ -43,7 +43,7 @@
                             <trend
                                 :data="dataPoids"
                                 :gradient="['#FF0000', '#00FF0C']"
-                                height=100
+                                
                                 stroke-width="2"
                                 auto-draw
                                 smooth>
@@ -68,7 +68,7 @@
                                 <div class='row text-black'>
                                     <div class="col  form-group">
                                         <label for="Date">Date:</label>
-                                        <input type="text" class="form-control"  id="Date" name="Date" disabled="disabled" v-model="Trait.date">
+                                        <input type="text" class="form-control"  id="Date" name="Date" disabled="disabled" v-model="Trait.Date">
                                     </div>
                                     <div class="col  form-group">
                                         <label for="poids">Poids:</label>
@@ -79,11 +79,12 @@
                                         <input type="number" class="form-control" id="taille" name="taille" v-model="taille">
                                     </div>
                                 </div>
+                                <div class="modal-footer">
+                                    <button type="submit" class="btn btn-primary" @click="addTrait()">Valider</button>
+                                </div>
                             </form>
                         </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-primary" @click="addTrait()">Valider</button>
-                        </div>
+                        
                     </div>
                 </div>
             </div>
@@ -99,10 +100,11 @@
                 dataImc: [28, 27, 27, 26, 26, 25, 25, 25, 26, 29],
                 dataPoids: [85, 84.14, 83, 83.65, 82.19, 81.98, 82.16, 80.16, 84.14, 85],
                 Trait:{
-                    ProfileId:0,
-                    value:0,
-                    traitType:'',
-                    date: new Date(),
+                    ID:'',
+                    ProfileID:0,
+                    Value:0,
+                    Type:'',
+                    Date: new Date(),
                 },
                 poids:0,
                 taille:0,
@@ -132,25 +134,30 @@
 
             addTrait(){
                 //Poids
-                this.Trait.ProfileId = 1
-                this.Trait.value = this.poids
-                this.Trait.traitType = 0 
+                this.Trait.ProfileID = 1
+                console.log(this.poids)
+                this.Trait.Value = this.poids
+                this.Trait.Type = 0 
                 axios.post('/Traits', this.Trait)
                 .then(response => {
+
                 })
 
                 //Taille
-                this.Trait.ProfileId = 1
-                this.Trait.value = this.taille
-                this.Trait.traitType = 1 
+                this.Trait.ProfileID = 1
+                console.log(this.taille)
+                this.Trait.Value = this.taille
+                this.Trait.Type = 1 
                 axios.post('/Traits', this.Trait)
                 .then(response => {
+                    
                 })
 
                 //IMC
-                this.Trait.ProfileId = 1
-                this.Trait.value = this.poids / ((this.taille/100)^2)
-                this.Trait.traitType = 2 
+                this.Trait.ProfileID = 1
+                this.Trait.Value = this.poids / ((this.taille/100)^2)
+                console.log(this.Trait.Value)
+                this.Trait.Type = 2 
                 axios.post('/Traits', this.Trait)
                 .then(response => {
                     $("#AddPoint").modal("hide");
