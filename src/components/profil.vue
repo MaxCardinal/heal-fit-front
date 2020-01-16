@@ -36,13 +36,13 @@
 
 
         <div class="col m-3 card bg-card3">
-          <h3 class="text-black">Obectif</h3>
+          <h3 class="text-black">Objectif</h3>
           <div class="row">
               <div class="col-1">
                 <i class="fas fa-weight fa-4x"></i>
               </div>
               <div class="col">
-                <h1 class="m-4 text-black">{{ objectif }} kg</h1>
+                <h1 class="m-4 text-black">75kg</h1>
               </div>
           </div>
         </div>
