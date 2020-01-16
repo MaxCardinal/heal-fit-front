@@ -113,7 +113,7 @@
 
             getDateToday(){
                 var ladate = new Date();
-                this.Trait.date = ladate.getDate()+"/"+(ladate.getMonth())+"/"+ladate.getFullYear()
+                this.Trait.date = ladate.getDate()+"/"+(ladate.getMonth() + 1)+"/"+ladate.getFullYear()
             },
 
             getPoid(){
