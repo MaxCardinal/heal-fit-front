@@ -29,7 +29,7 @@
                 <i class="fas fa-weight fa-4x"></i>
               </div>
               <div class="col">
-                <h1 class="m-4 text-black">80.16 kg</h1>
+                <h1 class="m-4 text-black">{{ profileTrait.value }} kg</h1>
               </div>
           </div>
         </div>
@@ -48,12 +48,7 @@
         </div>
       </div>
 
-      <trend
-          :data="data"
-          :gradient="['#FF0000', '#00FF0C']"
-          auto-draw
-          stroke-width="2"
-          smooth>
+      <trend :data="data" :gradient="['#FF0000', '#00FF0C']" auto-draw stroke-width="2" smooth v-show="data">
       </trend>
 
     </div>
@@ -74,8 +69,11 @@
           accountID:'',
           plans:''
         },
+        traits: [],
+        profileTrait: {},
 
-        data: [85, 84.14, 83, 83.65, 86, 81.98, 82.16, 80.16, 84.14, 85]
+        // [85, 84.14, 83, 83.65, 86, 81.98, 82.16, 80.16, 84.14, 85]
+        data: []
 
       }
     },
@@ -90,13 +88,27 @@
           this.profil = response.data
         })
 
+      },
+
+      GetTraits() {
+        let id = this.$route.params.id
+
+        axios.get('/Profiles/' + id + "/Traits")
+        .then(response => {
+          this.traits = response.data.traits
+          response.data.traits.forEach(trait => {
+            this.data.push(trait.value)
+          })
+
+          this.profileTrait = response.data.traits[response.data.traits.length - 1]
+        })
       }
 
     },
 
     mounted() {
-      
         this.GetProfil()
+        this.GetTraits()
     }
 
   }
