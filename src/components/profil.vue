@@ -97,7 +97,9 @@
         .then(response => {
           this.traits = response.data.traits
           response.data.traits.forEach(trait => {
-            this.data.push(trait.value)
+            if (trait.type == 0) {
+              this.data.push(trait.value)
+            }
           })
 
           this.profileTrait = response.data.traits[response.data.traits.length - 1]
