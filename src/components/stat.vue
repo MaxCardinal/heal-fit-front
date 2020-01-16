@@ -126,21 +126,21 @@
 
             addTrait(){
                 //Poids
-                this.Trait.ProfileID = 1
+                this.Trait.ProfileID = 2
                 console.log(this.poids)
                 this.Trait.Value = parseFloat(this.poids)
                 this.Trait.Type = 0 
                 axios.post('/Traits', this.Trait)
                 .then(() => {
                     //Taille
-                    this.Trait.ProfileID = 1
+                    this.Trait.ProfileID = 2
                     console.log(this.taille)
                     this.Trait.Value = parseFloat(this.taille)
                     this.Trait.Type = 1 
                     axios.post('/Traits', this.Trait)
                 }).then(() => {
                     //IMC
-                    this.Trait.ProfileID = 1
+                    this.Trait.ProfileID = 2
                     this.Trait.Value = parseFloat(this.poids / ((this.taille/100)^2))
                     console.log("Poids : " + this.poids)
                     console.log("Taille : " + this.taille)
